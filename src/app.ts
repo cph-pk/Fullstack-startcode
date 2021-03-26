@@ -2,27 +2,31 @@ import express from "express";
 import dotenv from "dotenv";
 dotenv.config()
 import path from "path";
-import friendRoutes from "./routes/FriendRoutes";
+import friendRoutes from "./routes/FriendRoutesAuth";
+import { ApiError } from "./errors/apiError";
 const app = express();
 import { Request, Response } from "express";
-import { ApiError } from "./errors/apiError";
 import simpleLogger from "./middleware/simpleLogger";
 // import myCors from "./middleware/myCors";
 // app.use(myCors);
 
 // Cors package
-const cors = require('cors');
-app.use(cors());
+// const cors = require('cors');
+// app.use(cors());
 
 
 // Logger
 import logger, { stream } from "./middleware/logger";
 const morganFormat = process.env.NODE_ENV == "production" ? "combined" : "dev"
 app.use(require("morgan")(morganFormat, { stream }));
-logger.log("info", "Server started");
+app.set("logger", logger) 
+//The line above sets the logger as a global key on the application object
+//You can now use it from all your middlewares like this req.app.get("logger").log("info","Message")
+//Level can be one of the following: error, warn, info, http, verbose, debug, silly
+//Level = "error" will go to the error file in production
 
 // Simple logger
-app.use(simpleLogger);
+//app.use(simpleLogger);
 
 
 app.use(express.static(path.join(process.cwd(), "public")))
