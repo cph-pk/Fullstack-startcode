@@ -48,8 +48,8 @@ router.get("/all", async (req: any, res) => {
     const friends = await facade.getAllFriends();
 
     const friendsDTO = friends.map(friend => {
-        const { firstName, lastName, email } = friend
-        return { firstName, lastName, email }
+        const { firstName, lastName, email, role } = friend
+        return { firstName, lastName, email, role }
     })
     res.json(friendsDTO);
 })
@@ -97,7 +97,7 @@ router.get("/me", async (req: any, res, next) => {
 //An admin user can fetch everyone
 router.get("/find-user/:email", async (req: any, res, next) => {
 
-    if (USE_AUTHENTICATION && !req.credentials.role && req.credentials.role !== "admin") {
+    if (USE_AUTHENTICATION && !req.credentials.role || req.credentials.role !== "admin") {
         throw new ApiError("Not Authorized", 401)
     }
     const userId = req.params.email;
@@ -119,7 +119,7 @@ router.get("/find-user/:email", async (req: any, res, next) => {
 router.put('/:email', async function (req: any, res, next) {
 
     try {
-        if (USE_AUTHENTICATION && !req.credentials.role && req.credentials.role !== "admin") {
+        if (USE_AUTHENTICATION && !req.credentials.role || req.credentials.role !== "admin") {
             throw new ApiError("Not Authorized", 401)
         }
         const email = req.params.email;
@@ -145,7 +145,7 @@ router.put('/:email', async function (req: any, res, next) {
 router.delete('/:email', async function (req: any, res, next) {
 
     try {
-        if (USE_AUTHENTICATION && !req.credentials.role && req.credentials.role !== "admin") {
+        if (USE_AUTHENTICATION && !req.credentials.role || req.credentials.role !== "admin") {
             throw new ApiError("Not Authorized", 401)
         }
         const userId = req.params.email;

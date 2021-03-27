@@ -1,5 +1,5 @@
 import { IFriend } from '../interfaces/IFriend';
-import { Db, Collection } from "mongodb";
+import { Db, Collection, Timestamp } from "mongodb";
 import bcrypt from "bcryptjs";
 import { ApiError } from '../errors/apiError';
 import Joi, { ValidationError } from "joi"
@@ -43,7 +43,8 @@ class FriendsFacade {
           lastName: f.lastName,
           email: f.email,
           password: f.password,
-          role: "user"
+          role: "user",
+          createTime: new Date()
         }
       )
 
