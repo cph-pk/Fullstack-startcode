@@ -70,7 +70,7 @@ class FriendsFacade {
       const hashedpw = await bcrypt.hash(friend.password, BCRYPT_ROUNDS);
       const f = { ...friend, password: hashedpw }
 
-      await this.friendCollection.updateOne(
+      return await this.friendCollection.updateOne(
         { email: email },
         {
           $set: {
@@ -84,7 +84,8 @@ class FriendsFacade {
 
         }
       )
-      return this.friendCollection.findOne({ email: f.email })
+      
+      //return this.friendCollection.findOne({ email: f.email })
     } catch (error) {
       throw new ApiError(error);
     }
