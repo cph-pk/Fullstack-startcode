@@ -73,35 +73,49 @@ describe("## Verify the Friends Facade ##", () => {
     })
 
     describe("Verify the deleteFriend method", () => {
-        xit("It should remove the user Peter", async () => {
+        it("It should remove the user Pop", async () => {
+            const status = await facade.deleteFriend("pc@b.dk");
+            expect(status).to.be.true
         })
-        xit("It should return false, for a user that does not exist", async () => {
+        it("It should return false, for a user that does not exist", async () => {
+            const status = await facade.deleteFriend("aa@b.dk");
+            expect(status).to.be.false
         })
     })
 
     describe("Verify the getAllFriends method", () => {
-        xit("It should get two friends", async () => {
+        it("It should get two friends", async () => {
+            const allFriends = await facade.getAllFriends();
+            expect(allFriends.length).to.equal(2)
         })
     })
 
     describe("Verify the getFriend method", () => {
 
-        xit("It should find Donald Duck", async () => {
+        it("It should find Pop Corn", async () => {
+            const findFriend = await friendCollection.findOne({ email: "pc@b.dk" })
+            expect(findFriend.lastName).to.be.equal("Corn")
         })
-        xit("It should not find xxx.@.b.dk", async () => {
+        it("It should not find xxx.@.b.dk", async () => {
+            const findFriend = await friendCollection.findOne({ email: "xxx.@.b.dk" })
+            expect(findFriend).to.be.null
         })
     })
 
     describe("Verify the getVerifiedUser method", () => {
         it("It should correctly validate Pop Corn's credential,s", async () => {
-            const veriefiedPeter = await facade.getVerifiedUser("pc@b.dk", "secret")
-            expect(veriefiedPeter).to.be.not.null;
+            const verifiedPop = await facade.getVerifiedUser("pc@b.dk", "secret")
+            expect(verifiedPop).to.be.not.null;
         })
 
-        xit("It should NOT validate Pop Corn's credential,s", async () => {
+        it("It should NOT validate Pop Corn's credential,s", async () => {
+            const NotVerifiedPop = await facade.getVerifiedUser("pc@b.dk", "")
+            expect(NotVerifiedPop).to.be.null;
         })
 
-        xit("It should NOT validate a non-existing users credentials", async () => {
+        it("It should NOT validate a non-existing users credentials", async () => {
+            const NonExisingUserVerified = await facade.getVerifiedUser("aa@b.dk", "")
+            expect(NonExisingUserVerified).to.be.null;
         })
     })
 
