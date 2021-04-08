@@ -84,7 +84,7 @@ class FriendsFacade {
 
         }
       )
-      
+
       //return this.friendCollection.findOne({ email: f.email })
     } catch (error) {
       throw new ApiError(error);
