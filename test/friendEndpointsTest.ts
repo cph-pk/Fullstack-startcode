@@ -61,7 +61,7 @@ describe("### Describe the Friend Endpoints (/api/friends) ###", function () {
     })
 
     it("It should fail to Add user due to wrong password length", async () => {
-      const newFriend = { firstName: "Jan", lastName: "Olsen", email: "jan@b.dk", password: "sec" }
+      const newFriend = { firstName: "Jan", lastName: "Olsen", email: "jan@b.dk", password: "sec" } // should be min 4
       const response = await request.post('/api/friends').send(newFriend)
       expect(response.status).to.equal(400)
     })

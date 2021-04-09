@@ -9,7 +9,9 @@
     "dev": "nodemon src/bin/www.ts",
     "dev:debug": "nodemon --inspect src/bin/www.ts",
     "test": "mocha --exit  -r ts-node/register test/**/*.ts",
-    "test:debug": "mocha --exit -r ts-node/register --inspect test/**/*.ts"
+    "test:debug": "mocha --exit -r ts-node/register --inspect test/**/*.ts",
+    "test2": "mocha --exit  -r ts-node/register playground/what/whattodoTest.ts",
+    "test3": "mocha --exit  -r ts-node/register playground/infoForNameServerTest.ts"
   },
   "nodemonConfig": {
     "ignore": [
@@ -37,6 +39,7 @@
     "joi": "^17.4.0",
     "mongodb": "^3.6.5",
     "morgan": "^1.10.0",
+    "node-fetch": "^2.6.1",
     "tsscmp": "^1.0.6",
     "typescript": "^4.2.3",
     "winston": "^3.3.3"
@@ -52,6 +55,8 @@
     "@types/mocha": "^8.2.2",
     "@types/mongodb": "^3.6.10",
     "@types/morgan": "^1.9.2",
+    "@types/nock": "^11.1.0",
+    "@types/node-fetch": "^2.5.10",
     "@types/supertest": "^2.0.10",
     "@types/winston": "^2.4.4",
     "chai": "^4.3.4",
