@@ -9,7 +9,7 @@ describe("What to do endpoint", function () {
         .get("/api/activity")
         .reply(200, {
 
-            "activity": "Go for a run off",
+            "activity": "Go for a run",
             "type": "recreational",
             "participants": 1,
             "price": 0,
@@ -22,7 +22,6 @@ describe("What to do endpoint", function () {
 
   it("Should eventually provide 'Go for a run'", async function () {
     const response = await request.get("/whattodo")
-    console.log(JSON.stringify(response))
     expect(response.body.activity).to.be.equal("Go for a run");
   })
 })
