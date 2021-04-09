@@ -3,7 +3,7 @@ import app from "./infoForNameServer";
 const request = require("supertest")(app);
 import nock from "nock";
 
-describe("While attempting to get person", function () {
+describe("While attempting to get Donald", function () {
 
     it("Should provide gender 'male'", async function () {
         nock('https://api.genderize.io')
