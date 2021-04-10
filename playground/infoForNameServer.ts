@@ -2,10 +2,6 @@ import express from "express"
 const app = express();
 import fetch from 'node-fetch'
 
-app.get("/whattodo", async (req, res) => {
-    const whatToDo = await fetch("https://www.boredapi.com/api/activity").then(r => r.json())
-    res.json(whatToDo)
-})
 app.get("/nameinfo/:name", async (req, res) => {
     const name = req.params.name
     const promises = [
