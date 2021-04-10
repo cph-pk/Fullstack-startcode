@@ -38,7 +38,7 @@ describe("### Describe the Friend Endpoints (/api/friends) ###", function () {
 
   //In this, and all the following REMOVE tests that requires authentication if you are using the simple version of friendRoutes
   describe("While attempting to get all users", function () {
-    it("it should get two users when authenticated", async () => {
+    it("it should get three users when authenticated", async () => {
       const response = await request
         .get('/api/friends/all')
         .auth("pp@b.dk", "secret")
