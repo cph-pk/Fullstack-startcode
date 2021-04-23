@@ -2,7 +2,7 @@ import FriendFacade from '../facades/friendFacade';
 import { IFriend } from '../interfaces/IFriend';
 import { ApiError } from '../errors/apiError';
 import { Request } from "express";
-import fetch from "node-fetch"
+import fetch from "node-fetch";
 
 
 
@@ -24,9 +24,9 @@ export function setupFacade(db: any) {
 export const resolvers = {
     Query: {
 
-        getAllFriends: (root: any, _: any, req: any) => {
+        getAllFriends: (root: any, _: any, context: any) => {
 
-            if (!req.credentials.role || req.credentials.role !== "admin") {
+            if (!context.credentials || !context.credentials.role || context.credentials.role !== "admin") {
                 throw new ApiError("Not Authorized", 401)
             }
 

@@ -11,8 +11,8 @@ import simpleLogger from "./middleware/simpleLogger";
 // app.use(myCors);
 
 // Cors package
-// const cors = require('cors');
-// app.use(cors());
+const cors = require('cors');
+app.use(cors());
 
 app.use(express.json());
 
