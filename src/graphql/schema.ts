@@ -29,7 +29,7 @@ const typeDefs = `#graphql
     type Point {
  
         """Will ALWAYS have the value Point"""
-        type : String
+        type: String
         
         """Array with longitude followed by latitude [lon,lat]"""
         coordinates: [Float]
@@ -43,7 +43,7 @@ const typeDefs = `#graphql
         Returns all details for all Friends
         (Should probably require 'admin' rights if your are using authentication)
         """
-        getAllFriends : [Friend]!
+        getAllFriends: [Friend]!
 
         """
         Only required if you ALSO wan't to try a version where the result is fetched from the existing endpoint

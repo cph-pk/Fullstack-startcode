@@ -114,6 +114,7 @@ export const resolvers = {
         findNearbyFriends: async(_:object,{input}: {input: IPositionFindIndput}) => {
             try {
                 const result = await positionFacade.findNearbyFriends(input.email,input.password,input.longitude,input.latitude,input.distance)
+                //console.log(result)
                 return result;
             } catch(err){
                 console.log(err)

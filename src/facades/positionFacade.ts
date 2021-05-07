@@ -47,7 +47,7 @@ class PositionFacade {
         // 2) Opdater position
 
         return this.positionCollection.find({
-            email: {$ne:email},
+            email: {$ne:email}, // not equal own email
             location: {
                 $near: {
                     $geometry: {
