@@ -52,7 +52,7 @@ const typeDefs = `#graphql
         
         getFriendByEmail(input: String): Friend
 
-        getFriendById(input: String): Friend
+        getFriendById(input: ID): Friend
     }
 
     input FriendInput {
